@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.core.env.Environment
 
 @SpringBootApplication
-@ComponentScan(basePackages = ["config", "controllers", "repositories"])
+@ComponentScan(basePackages = ["config", "controllers", "repositories", "services"])
 class Main
 fun main(args: Array<String>)
 {
