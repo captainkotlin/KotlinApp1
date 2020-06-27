@@ -28,3 +28,4 @@ gradle/
 .gradle
 .idea
 *.iml
+.allure/
