@@ -5,17 +5,15 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.NoOpPasswordEncoder
-import services.authentication.TrUserDetailsService
 
 @Configuration
 class SecurityConfig : WebSecurityConfigurerAdapter()
 {
     @Autowired
-    private lateinit var userDetailsService: TrUserDetailsService
+    private lateinit var userDetailsService: service.authentication.UserDetailsService
 
-    override fun userDetailsService(): UserDetailsService
+    override fun userDetailsService(): org.springframework.security.core.userdetails.UserDetailsService
     {
         return userDetailsService;
     }

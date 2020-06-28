@@ -1,6 +1,6 @@
-package constants
+package constant.web
 
-object WebPages
+object Pages
 {
     const val index = "index"
     const val board = "board"

@@ -1,14 +1,13 @@
 package app
 
-import org.springframework.beans.factory.annotation.Autowired
+import constant.db.Packages
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.context.annotation.ComponentScan
-import org.springframework.core.env.Environment
 
 @SpringBootApplication
-@ComponentScan(basePackages = ["config", "controllers", "repositories", "services"])
+@ComponentScan(basePackages = [ Packages.config, Packages.controller, Packages.repository, Packages.service ])
 class Main
 fun main(args: Array<String>)
 {

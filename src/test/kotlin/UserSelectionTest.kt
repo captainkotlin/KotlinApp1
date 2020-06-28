@@ -1,4 +1,4 @@
-import config.RepositoryConfig
+import config.authentication.RepositoryConfig
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -8,12 +8,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.support.AnnotationConfigContextLoader
-import repositories.TrUserRepository
-import repositories.TrUserRoleRepository
+import repository.authentication.UserRepository
+import repository.authentication.UserRoleRepository
 
 @DataJpaTest
 @ContextConfiguration(
-    classes = [ RepositoryConfig::class, TrUserRepository::class],
+    classes = [ RepositoryConfig::class, UserRepository::class],
     loader = AnnotationConfigContextLoader::class
 )
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -21,10 +21,10 @@ import repositories.TrUserRoleRepository
 class UserSelectionTest
 {
     @Autowired
-    private lateinit var userRepository: TrUserRepository;
+    private lateinit var userRepository: UserRepository;
 
     @Autowired
-    private lateinit var userRoleRepository: TrUserRoleRepository;
+    private lateinit var userRoleRepository: UserRoleRepository;
 
     companion object
     {
@@ -37,21 +37,21 @@ class UserSelectionTest
     @DisplayName("Select default user from userRepository")
     fun test()
     {
-        val trUser = userRepository.findByName(USERNAME)
-        Assertions.assertEquals(USERNAME, trUser.user)
-        Assertions.assertEquals(PASSWORD, trUser.pass)
+        val user = userRepository.findByName(USERNAME)
+        Assertions.assertEquals(USERNAME, user.user)
+        Assertions.assertEquals(PASSWORD, user.pass)
     }
 
     @Test
     @DisplayName("Select default roles from userRoleRepository")
     fun test1()
     {
-        val trUserRoles = userRoleRepository.findByName(USERNAME)
-        Assertions.assertTrue(trUserRoles.size == USER_ROLES.size, "")
+        val userRoles = userRoleRepository.findByName(USERNAME)
+        Assertions.assertTrue(userRoles.size == USER_ROLES.size, "")
         val role1Index = 0
         val role2Index = 1
-        Assertions.assertEquals(USER_ROLES.get(role1Index), trUserRoles[role1Index].role)
-        Assertions.assertEquals(USER_ROLES.get(role2Index), trUserRoles[role2Index].role)
+        Assertions.assertEquals(USER_ROLES.get(role1Index), userRoles[role1Index].role)
+        Assertions.assertEquals(USER_ROLES.get(role2Index), userRoles[role2Index].role)
         userRoleRepository.findAll()
         System.out.println("Hello")
     }

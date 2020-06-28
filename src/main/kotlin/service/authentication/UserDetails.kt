@@ -1,10 +1,10 @@
-package services.authentication
+package service.authentication
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
 
-class TrUserDetails(
+class UserDetails(
     var user: String,
     var pass: String,
     var authoritiesList: List<GrantedAuthority>

@@ -1,12 +1,10 @@
-package repositories.entities
+package repository.entity
 
-import org.springframework.security.core.GrantedAuthority
-import org.springframework.security.core.userdetails.UserDetails
 import javax.persistence.*
 
 @Entity
 @Table(name = "users")
-class TrUser(
+data class User(
     @field:[Id Column(name = "username")] var user: String = "",
     @field:[Column(name = "password")] var pass: String = ""
 )

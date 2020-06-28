@@ -1,0 +1,5 @@
+lookupKey = KotlinApp1Project1
+driverClassName = org.postgresql.Driver
+jdbcUrl = jdbc:postgresql://localhost:5432/KotlinApp1Project1
+username = postgres
+password = postgres

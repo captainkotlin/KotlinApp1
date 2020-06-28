@@ -1,26 +1,26 @@
-package services.authentication
+package service.authentication
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
-import repositories.TrUserRepository
-import repositories.TrUserRoleRepository
+import repository.authentication.UserRepository
+import repository.authentication.UserRoleRepository
 
 @Service
-class TrUserDetailsService : UserDetailsService
+class UserDetailsService : UserDetailsService
 {
     @Autowired
-    private lateinit var userRepository: TrUserRepository
+    private lateinit var userRepository: UserRepository
 
     @Autowired
-    private lateinit var userRoleRepository: TrUserRoleRepository
+    private lateinit var userRoleRepository: UserRoleRepository
 
-    override fun loadUserByUsername(username: String): TrUserDetails
+    override fun loadUserByUsername(username: String): UserDetails
     {
         val user = userRepository.findByName(username);
         val userRoles = userRoleRepository.findByName(username)
         val authories = userRoles.map { SimpleGrantedAuthority(it.role) }
-        return TrUserDetails(user.user, user.pass, authories)
+        return UserDetails(user.user, user.pass, authories)
     }
 }
